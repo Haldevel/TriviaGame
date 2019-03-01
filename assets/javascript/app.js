@@ -1,4 +1,8 @@
 
+var countUnanswered = 0;
+var countCorrect = 0;
+var countIncorrect = 0;
+
 var questions = [
 "According to the old proverb, to which European capital city do all roads lead?",
 "What is the name of the fairy in Peter Pan?",
@@ -26,31 +30,62 @@ var answers = [
     
 ];
 
-{/* <div>What was the full length CGI movie?</div>
-<input type="radio" id="radio1" name="RadioGroup1" value="1" >A Toy Story</input>
-<input type="radio" id="radio2" name="RadioGroup1" value="2" >Monsters Inc</input>
-<input type="radio" id="radio3" name="RadioGroup1" value="3" >The Lion King</input>
-<div>According to the old proverb, to which European capital city do all roads lead?</div> */}
+var correctAns = ["01", "10", "21", "32", "40", "53", "62", "71", "83", "90"];
+
+
 $("#start").click(display);
 
+$("#done").click(displayResults);
+
+
+
+//$("#start").click(startSlideshow);
+
+
+function displayResults() {
+  console.log("Inside displayResults");
+
+  $("#main").hide();
+  $("#doneDiv").hide();
+
+  //loop through groups of radio buttons
+  for(var i = 0; i < correctAns.length; i++) {
+    var rbChecked = $('input[name=RadioGroup' + i + ']:checked');
+    if(rbChecked.length > 0) {
+      //a button was checked so check which one was selected
+      var checkedVal = rbChecked.val();
+      console.log("Was checked " + checkedVal);
+      if(correctAns[i] === checkedVal) {
+        //the answer is correct
+        countCorrect++;  
+      }
+      else {
+        //the answer is incorrect
+        countIncorrect++;      
+      }
+    }
+    else{
+      //the group was unanswered
+      countUnanswered++;
+ 
+    } 
+
+  }
+
+  console.log("Unanswered " + countUnanswered);
+  console.log("Incorrect " + countIncorrect);
+  console.log("Correct " + countCorrect);
+
+  //<div id="main" class="mt-3 ml-5" style="display: none;">
+
+                            
+}
+
 function display() {
-//  This code will run as soon as the page loads.
-//window.onload = function() {
-     /*  // 2. Create a variable named "letterBtn" equal to $("<button>");
-      var letterBtn = $("<button>");
 
-      // 3. Then give each "letterBtn" the following classes: "letter-button" "letter" "letter-button-color".
-      letterBtn.addClass("letter-button letter letter-button-color");
 
-      // 4. Then give each "letterBtn" a data-attribute called "data-letter".
-      letterBtn.attr("data-letter", letters[i]);
 
-      // 5. Then give each "letterBtns" a text equal to "letters[i]".
-      letterBtn.text(letters[i]);
-
-      // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
-      $("#buttons").append(letterBtn); */
-      
+    $("#doneDiv").css('visibility', 'visible');  
       //$("#beginning").$('.menu').toggle("slide")
       $("#beginning").hide();
 
@@ -71,48 +106,14 @@ function display() {
       }  
 
       //create a buttton, append and style it
-      var doneBtn = $("<button id='done'>Done</button>");
+  /*     var doneBtn = $("<button id='done'>Done</button>");
       doneBtn.addClass("btn btn-outline-dark");
       doneBtn.addClass("done-btn");
       $("#main").append(doneBtn);
-      //<button id="start" class="mt-5 ml-5 btn btn-outline-dark"">Start</button>
-
-        //make a radio button group and append it
-        /* for(var j = 0; j < answers.length; j++) {
-            var separateParts = answers[j].split(",");
-
-            console.log("j "+ j + separateParts); 
-            for(var k=0; k < separateParts.length; k++) {
-                console.log("k " +k + separateParts[k]);
-                var newRadioBtn = generateRadioBtn(j,separateParts[k]);
-                console.log(newRadioBtn); */
-
-                /* var radioBtn = $("<input>");
-                radioBtn.attr("type", "radio");
-                radioBtn.attr("id","radio"+
-                radioBtn.attr("name","RadioGroup"+[j]));
-                radioBtn.attr("value",[j][k]);
-                radioBtn.text(separateParts[k]);
-                //divQ.append(radioBtn);
-                $("#main").append(radioBtn); */
-            
-            /* for(var k=0; k < separateParts.length; k++) {
-                var radioBtn = $("<input>");
-                radioBtn.attr("type", "radio");
-                radioBtn.attr("id","radio"+
-                radioBtn.attr("name","RadioGroup"+[j]));
-                radioBtn.attr("value",[j]);
-                radioBtn.text(separateParts[k]);
-                divQ.append(radioBtn);
-            } */
-                            
-      
-
-        
-
-      
-     
-   
+      console.log("appended the Done button "); */
+    
+       
+  
 };
 
 function generateDiv(question) {
@@ -125,16 +126,12 @@ function generateDiv(question) {
   }
 
   function generateRadioBtn(ind, txt, position) {
-    var radioBtn = $('<input type="radio" name="RadioGroup"+ind value=position id="radio"+position>'+ txt + '</input>');
+    /* var radioBtn = $('<input type="radio" name="RadioGroup"+ind value=position id="radio"+position>'+ txt + '</input>'); */
+    var radioBtn = $('<input type="radio">'+ txt + '</input>');
     radioBtn.addClass("radioB");
-    /* var radioBtn = $('<input type="radio" name="rbtnCount" />');
-    var radioBtn = $("<input>");
-    radioBtn.attr("type", "radio");
-    //radioBtn.attr("id","radio"+
-    radioBtn.attr("name","RadioGroup"+ind);
-    radioBtn.attr("value",position);
     radioBtn.attr("id","radio"+position);
-    radioBtn.append(txt); */
+    radioBtn.attr("value",position);
+    radioBtn.attr("name","RadioGroup"+ind);    
     return radioBtn;
   }
 

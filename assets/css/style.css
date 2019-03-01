@@ -14,8 +14,12 @@
 }
 
 .done-btn {
-    align-self: center;
     margin-top: 15px;
-    
+    margin:0 auto;
+    display:block;      
 }
+
+/* .hide {
+
+} */
 
