@@ -1,0 +1,21 @@
+.question {
+    margin-left: 5px;
+    margin-top: 7px;
+    font-family: 'Dosis', sans-serif;
+   
+    
+}
+
+.radioB {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Dosis', sans-serif;
+   /*  margin-top: 2px; */
+}
+
+.done-btn {
+    align-self: center;
+    margin-top: 15px;
+    
+}
+

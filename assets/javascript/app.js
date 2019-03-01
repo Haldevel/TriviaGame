@@ -9,8 +9,7 @@ var questions = [
 "The title role of the 1990 movie “Pretty Woman” was played by which actress?",
 "Which American newspaper first exposed the Watergate Scandal?",
 "In Kiplings Jungle Book, what kind of creature was Kaa?",
-" Which country was home to the Moa bird which became extinct about 500 years ago?",
-" Which Roman god is equivalent to the Greek god Hermes?"
+" Which country was home to the Moa bird which became extinct about 500 years ago?"
 ];
 
 var answers = [
@@ -23,8 +22,8 @@ var answers = [
     "Angelina Jolie,JenniferAniston,Julia Roberts,Natalie Portman",
     "The New York Times,Washington Post,Chicago Tribune,The Wall Street Journal",
     "Wolf,Bear,Monkey,Snake",
-    "New Zealand,Spain,Egypt,China",
-    "Neptune,Mars,Mercury,Apollo"
+    "New Zealand,Spain,Egypt,China"
+    
 ];
 
 {/* <div>What was the full length CGI movie?</div>
@@ -32,9 +31,11 @@ var answers = [
 <input type="radio" id="radio2" name="RadioGroup1" value="2" >Monsters Inc</input>
 <input type="radio" id="radio3" name="RadioGroup1" value="3" >The Lion King</input>
 <div>According to the old proverb, to which European capital city do all roads lead?</div> */}
+$("#start").click(display);
 
+function display() {
 //  This code will run as soon as the page loads.
-window.onload = function() {
+//window.onload = function() {
      /*  // 2. Create a variable named "letterBtn" equal to $("<button>");
       var letterBtn = $("<button>");
 
@@ -50,6 +51,8 @@ window.onload = function() {
       // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
       $("#buttons").append(letterBtn); */
       
+      //$("#beginning").$('.menu').toggle("slide")
+      $("#beginning").hide();
 
       for(var i = 0; i < questions.length; i++) {
         //make a div and append it
@@ -67,7 +70,12 @@ window.onload = function() {
 
       }  
 
-      
+      //create a buttton, append and style it
+      var doneBtn = $("<button id='done'>Done</button>");
+      doneBtn.addClass("btn btn-outline-dark");
+      doneBtn.addClass("done-btn");
+      $("#main").append(doneBtn);
+      //<button id="start" class="mt-5 ml-5 btn btn-outline-dark"">Start</button>
 
         //make a radio button group and append it
         /* for(var j = 0; j < answers.length; j++) {
@@ -111,11 +119,14 @@ function generateDiv(question) {
     //make a div and append it
     var divQ = $("<div>");
     divQ.text(question);
+    divQ.append("</br>")
+    divQ.addClass("question");
     return divQ;
   }
 
   function generateRadioBtn(ind, txt, position) {
     var radioBtn = $('<input type="radio" name="RadioGroup"+ind value=position id="radio"+position>'+ txt + '</input>');
+    radioBtn.addClass("radioB");
     /* var radioBtn = $('<input type="radio" name="rbtnCount" />');
     var radioBtn = $("<input>");
     radioBtn.attr("type", "radio");
