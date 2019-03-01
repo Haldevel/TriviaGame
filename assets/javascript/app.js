@@ -57,7 +57,7 @@ function displayResults() {
       console.log("Was checked " + checkedVal);
       if(correctAns[i] === checkedVal) {
         //the answer is correct
-        countCorrect++;  
+         countCorrect++;  
       }
       else {
         //the answer is incorrect
@@ -66,19 +66,40 @@ function displayResults() {
     }
     else{
       //the group was unanswered
-      countUnanswered++;
- 
+      countUnanswered++; 
     } 
-
   }
+
+  $("#main").empty();
+
+  showScore(countUnanswered,  countIncorrect, countCorrect);
 
   console.log("Unanswered " + countUnanswered);
   console.log("Incorrect " + countIncorrect);
-  console.log("Correct " + countCorrect);
+  console.log("Correct " + countCorrect);    
+  
+  
+}
 
-  //<div id="main" class="mt-3 ml-5" style="display: none;">
+function showScore(unanswered, incorrect, correct ) {
+  console.log("Inside showScore ");
+  console.log($("#main"));
+  var notif = $("<h2>All Done!</h2></br>");
 
-                            
+  $("#main").append(notif);
+  $("#main").show();
+  var cor = $('<h4>Correct Answers: ' + correct + '</h4></br>');
+  $("#main").append(cor);
+  var incor = $('<h4>Incorrect Answers: ' + incorrect + '</h4></br>');
+  $("#main").append(incor);
+  var unan = $('<h4>Unanswered: ' + unanswered + '</h4>');
+  $("#main").append(unan);
+  
+  //$("#main").append();
+
+ 
+ 
+
 }
 
 function display() {
