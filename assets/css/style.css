@@ -19,6 +19,24 @@
     display:block;      
 }
 
+#display {
+    font-family: monospace;
+    font-size: 5rem;
+    color: rgb(241, 188, 13);
+    width: 70%;
+    /*  */margin-top: 100px;
+  /*   margin-left: 60px; */
+    margin: auto;
+    margin-top: 100px;
+  
+    /* Typography */
+    text-align: center;
+  
+    /* Visual */
+    background: rgba(14, 13, 13, 0.5);
+    border: 1px solid black;
+  }
+
 /* .hide {
 
 } */

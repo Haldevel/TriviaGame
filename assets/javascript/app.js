@@ -2,6 +2,10 @@
 var countUnanswered = 0;
 var countCorrect = 0;
 var countIncorrect = 0;
+var count = 30;
+var clockRunning = false;
+var time = 30;
+var intervalId;
 
 var questions = [
 "According to the old proverb, to which European capital city do all roads lead?",
@@ -104,7 +108,7 @@ function showScore(unanswered, incorrect, correct ) {
 
 function display() {
 
-
+  //start();
 
     $("#doneDiv").css('visibility', 'visible');  
       //$("#beginning").$('.menu').toggle("slide")
@@ -133,7 +137,7 @@ function display() {
       $("#main").append(doneBtn);
       console.log("appended the Done button "); */
     
-       
+    start();
   
 };
 
@@ -154,5 +158,69 @@ function generateDiv(question) {
     radioBtn.attr("value",position);
     radioBtn.attr("name","RadioGroup"+ind);    
     return radioBtn;
+  }
+
+
+  function start() {
+
+    //  TODO: Use setInterval to start the count here and set the clock to running.
+    console.log("inside start");
+    if (!clockRunning) {
+      console.log("start");
+      clockRunning = true;
+      console.log("count " + count);
+      intervalId = setInterval(countSec, 1000);
+      if(time == 1 ) {
+        console.log("time is up");
+        clearInterval(intervalId);
+  
+        clockRunning = false;
+        console.log(clockRunning);
+        displayResults();
+  
+      }
+    }
+   
+    //intervalId = setInterval(count, 1000);
+  }
+
+  function countSec() {
+    console.log("inside count");
+    //  TODO: increment time by 1, remember we cant use "this" here.
+    time--;
+    console.log("time " + time);
+    if(time === 0) {
+      console.log("1!!!");
+      clearInterval(intervalId);
+      clockRunning = false;
+      displayResults();
+    }
+    //  TODO: Get the current time, pass that into the stopwatch.timeConverter function,
+    //        and save the result in a variable.
+    var timeDisplay  = timeConverter(time);
+
+    //  TODO: Use the variable you just created to show the converted time in the "display" div.
+    $("#display").html(timeDisplay);
+  }
+
+  function  timeConverter(t) {
+
+    //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
+    var minutes = Math.floor(t / 60);
+    var seconds = t - (minutes * 60);
+
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+
+    if (minutes === 0) {
+      minutes = "00";
+    }
+
+    else if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    return minutes + ":" + seconds;
   }
 
