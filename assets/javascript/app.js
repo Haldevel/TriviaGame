@@ -42,10 +42,6 @@ $("#start").click(display);
 $("#done").click(displayResults);
 
 
-
-//$("#start").click(startSlideshow);
-
-
 function displayResults() {
   console.log("Inside displayResults");
 
@@ -98,26 +94,17 @@ function showScore(unanswered, incorrect, correct ) {
   $("#main").append(incor);
   var unan = $('<h4>Unanswered: ' + unanswered + '</h4>');
   $("#main").append(unan);
-  
-  //$("#main").append();
-
- 
  
 
 }
 
 function display() {
 
-  //start();
-
     $("#doneDiv").css('visibility', 'visible');  
-      //$("#beginning").$('.menu').toggle("slide")
       $("#beginning").hide();
 
       for(var i = 0; i < questions.length; i++) {
         //make a div and append it
-       /*  var divQ = $("<div>");
-        divQ.text(questions[i]); */
         var newDiv= generateDiv(questions[i]);
         $("#main").append(newDiv);
 
@@ -129,13 +116,6 @@ function display() {
         }
 
       }  
-
-      //create a buttton, append and style it
-  /*     var doneBtn = $("<button id='done'>Done</button>");
-      doneBtn.addClass("btn btn-outline-dark");
-      doneBtn.addClass("done-btn");
-      $("#main").append(doneBtn);
-      console.log("appended the Done button "); */
     
     start();
   
@@ -164,42 +144,28 @@ function generateDiv(question) {
   function start() {
 
     //  TODO: Use setInterval to start the count here and set the clock to running.
-    console.log("inside start");
+    
+    $("#display").show();
     if (!clockRunning) {
       console.log("start");
       clockRunning = true;
-      console.log("count " + count);
       intervalId = setInterval(countSec, 1000);
-      if(time == 1 ) {
-        console.log("time is up");
-        clearInterval(intervalId);
-  
-        clockRunning = false;
-        console.log(clockRunning);
-        displayResults();
-  
-      }
+    
     }
-   
-    //intervalId = setInterval(count, 1000);
+     
   }
 
   function countSec() {
-    console.log("inside count");
-    //  TODO: increment time by 1, remember we cant use "this" here.
+    //  decrement by 1 time to display and count seconds
     time--;
-    console.log("time " + time);
     if(time === 0) {
-      console.log("1!!!");
       clearInterval(intervalId);
       clockRunning = false;
       displayResults();
     }
-    //  TODO: Get the current time, pass that into the stopwatch.timeConverter function,
-    //        and save the result in a variable.
+  
     var timeDisplay  = timeConverter(time);
-
-    //  TODO: Use the variable you just created to show the converted time in the "display" div.
+ 
     $("#display").html(timeDisplay);
   }
 
