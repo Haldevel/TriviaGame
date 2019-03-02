@@ -2,7 +2,7 @@
 var countUnanswered = 0;
 var countCorrect = 0;
 var countIncorrect = 0;
-var count = 30;
+//var count = 30;
 var clockRunning = false;
 var time = 30;
 var intervalId;
@@ -144,7 +144,7 @@ function generateDiv(question) {
   function start() {
 
     //  TODO: Use setInterval to start the count here and set the clock to running.
-    
+
     $("#display").show();
     if (!clockRunning) {
       console.log("start");
